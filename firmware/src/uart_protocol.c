@@ -11,7 +11,7 @@
 
 LOG_MODULE_REGISTER(uart, LOG_LEVEL_DBG);
 
-static const struct device *uart_dev = DEVICE_DT_GET(DT_NODELABEL(uart1)); // native_sim PTY uart
+static const struct device *uart_dev = DEVICE_DT_GET(DT_NODELABEL(uart0)); // native_sim PTY uart
 
 #define MAX_PAYLOAD_LEN 64
 #define RX_BUF_SIZE 128
@@ -57,7 +57,7 @@ static void send_frame(uint8_t type, uint8_t *payload, uint16_t len) {
 }
 
 static void handle_get_status(void) {
-    uint8_t payload[16];
+    uint8_t payload[18];
     
     payload[0] = (uint8_t)state_machine_get_current();
     uint32_t uptime = state_machine_get_uptime_ms();

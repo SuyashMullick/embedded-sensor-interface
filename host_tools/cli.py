@@ -22,16 +22,12 @@ PARAM_STATUS_PERIOD_MS = 0x02
 PARAM_SENSOR_ENABLE = 0x03
 
 def crc16_ccitt(data: bytes) -> int:
-    crc = 0xFFFF
+    seed = 0xFFFF
     for byte in data:
-        crc ^= (byte << 8)
-        for _ in range(8):
-            if crc & 0x8000:
-                crc = (crc << 1) ^ 0x1021
-            else:
-                crc = crc << 1
-            crc &= 0xFFFF
-    return crc
+        e = (seed ^ byte) & 0xFF
+        f = (e ^ (e << 4)) & 0xFF
+        seed = ((seed >> 8) ^ (f << 8) ^ (f << 3) ^ (f >> 4)) & 0xFFFF
+    return seed
 
 def build_frame(msg_type: int, payload: bytes = b'') -> bytes:
     version = 0x01
