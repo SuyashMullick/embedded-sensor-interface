@@ -2,7 +2,7 @@
 
 A **simulation-first, deterministic embedded sensor interface module**, representative of subsystems commonly used in modern defense and aerospace platforms.
 
-## 🎯 Purpose and Use-Case
+## Purpose and Use-Case
 
 The objective of this project is to model a **pre-hardware development phase** where firmware, interfaces, and verification artifacts are produced *before physical hardware is available*, following rigorous industry standard practices.
 
@@ -15,7 +15,7 @@ The ESIM bridges a higher-level host system (e.g., a vehicle computer, mission c
 
 This allows systems engineers, QA, and software teams to begin integration, testing, and behavioral verification immediately, entirely in software.
 
-## 🏗️ System Architecture
+## System Architecture
 
 The ESIM runs as a Linux process utilizing the Zephyr RTOS `native_sim` execution target. The physical UART layer is simulated using a pseudo-terminal (PTY) bridging the Zephyr firmware and the Python-based Host CLI/Test tools.
 
@@ -41,7 +41,7 @@ flowchart TD
     SM <--> SensorSim
 ```
 
-## ⚙️ State Machine
+## State Machine
 
 The firmware enforces rigid state transition logic to ensure deterministic startup and runtime behavior.
 
@@ -60,7 +60,7 @@ stateDiagram-v2
     RECOVERY --> INIT : Best effort re-init
 ```
 
-## 🛡️ Claims and Non-Claims
+## Claims and Non-Claims
 
 **The project explicitly CLAIMS:**
 * **Interface rigor:** Strict adherence to a documented binary ICD, with CRC-16 (CCITT) checksums and robust error handling.
@@ -73,7 +73,7 @@ stateDiagram-v2
 * Hard real-time guarantees (execution is subject to Linux user-space scheduling jitter).
 * Use of Machine Learning (ML).
 
-## 📁 Repository Structure
+## Repository Structure
 
 * `firmware/` - Zephyr C firmware implementation for the `native_sim` target.
   * `src/main.c` - Initialization and Zephyr work queue setup.
@@ -87,7 +87,7 @@ stateDiagram-v2
 * `docs/` - Comprehensive technical documentation (`ICD.md`, `Design.md`, `Verification.md`, `Timing.md`).
 * `verification_report.md` - Evidence artifact summarizing the automated test runs and coverage.
 
-## 🚀 Getting Started
+## Getting Started
 
 ### 1. Prerequisites
 

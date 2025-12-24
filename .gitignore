@@ -5,3 +5,9 @@ __pycache__/
 .venv/
 
 *.venv
+*.log
+*.sh
+*.link
+test_crc.c
+test_crc
+.python-version
