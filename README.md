@@ -46,18 +46,18 @@ flowchart TD
 The firmware enforces rigid state transition logic to ensure deterministic startup and runtime behavior.
 
 ```mermaid
-stateDiagram-v2
-    [*] --> BOOT : Power-On
-    BOOT --> INIT : Minimal checks passed
-    INIT --> RUN : Interface, sensors, params initialized
-    RUN --> RUN : Normal Operation (1ms ticks)
+flowchart TD
+    BOOT([BOOT]) -->|Minimal checks passed| INIT([INIT])
+    INIT -->|Interface/sensors initialized| RUN([RUN])
     
-    BOOT --> ERROR : Unrecoverable fault
-    INIT --> ERROR : Unrecoverable fault
-    RUN --> ERROR : Unrecoverable fault
+    RUN -->|Normal Operation 1ms ticks| RUN
     
-    ERROR --> RECOVERY : Host triggered Reset
-    RECOVERY --> INIT : Best effort re-init
+    BOOT -.->|Fault| ERROR([ERROR])
+    INIT -.->|Fault| ERROR
+    RUN -.->|Fault| ERROR
+    
+    ERROR -->|Host triggered Reset| RECOVERY([RECOVERY])
+    RECOVERY -->|Best effort re-init| INIT
 ```
 
 ## Claims and Non-Claims
