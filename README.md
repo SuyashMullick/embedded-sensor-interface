@@ -33,8 +33,8 @@ flowchart TD
         SensorSim["Simulated I2C Sensor Driver"]
     end
 
-    CLI <-->|UART over PTY (pty.link)| UART
-    Tests <-->|UART over PTY (pty.link)| UART
+    CLI <-->|"UART over PTY (pty.link)"| UART
+    Tests <-->|"UART over PTY (pty.link)"| UART
 
     UART <--> SM
     SM <--> Param
