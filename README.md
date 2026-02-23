@@ -47,7 +47,7 @@ The firmware enforces rigid state transition logic to ensure deterministic start
 
 ```mermaid
 stateDiagram-v2
-    direction TB
+    direction LR
     BOOT --> INIT : Startup
     INIT --> RUN : Initialize
     RUN --> RUN : 1ms Ticks
